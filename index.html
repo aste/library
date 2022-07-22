@@ -4,9 +4,46 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title>My Library, The Odin Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
     <script src="booklist.js" defer></script>
   </head>
-  <body></body>
+
+  <body>
+    <div id="wrapper">
+      <header>
+        <div id="banner">
+          <h1>My Library</h1>
+          <p>Books I have read or want to read</p>
+        </div>
+      </header>
+
+      <div id="book-list">
+        <h2 class="my-books">My Books</h2>
+        <div class="form-subheaders">
+          <h3 class="form-all form-title">Title</h3>
+          <h3 class="form-all form-author">Author</h3>
+          <h3 class="form-all form-pages">Pages</h3>
+          <h3 class="form-all form-read">Read</h3>
+          <h3 class="form-all form-remove">Remove</h3>
+        </div>
+        <ul>
+          <li>
+            <span class="book-title">Title</span>
+            <span class="author">Author</span>
+            <span class="pages">Pages</span>
+            <span class="read">Read</span>
+            <!-- <span class="read">Remove</span> -->
+            <span class="remove">Remove Book</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
 </html>
