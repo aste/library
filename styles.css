@@ -1,5 +1,6 @@
 :root {
-  --green-color: #4ade80;
+  --green-color: #bef264;
+  --yellow-color: #fde047;
   --lightblue-color: #93c5fd;
   --red-color: #fca5a5;
   --grey-color: #bbbbbb;
@@ -40,12 +41,48 @@ body {
   flex-direction: column;
   background: var(--lightblue-color);
   padding: 10px 0;
+  box-shadow: 0px 3px 8px rgba(118, 118, 118, 0.2);
 }
 
 #banner h1,
 #banner p {
   text-align: center;
   margin: 15px;
+}
+
+#add-book-form {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 2fr;
+  padding: 5px;
+  gap: 6px;
+  margin: 30px;
+}
+
+#add-book-form input,
+#add-book-form button {
+  padding: 10px;
+  font-size: 16px;
+  font: inherit;
+  border: none;
+  color: var(--grey-color);
+  /* box-shadow: 3px 3px 8px rgba(118, 118, 118, 0.2); */
+}
+
+#add-book-form input:first-of-type {
+  border-radius: 6px 0 0 6px;
+}
+
+#add-book-form button {
+  color: white;
+  background: var(--green-color);
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  padding: 0px;
+  margin: 0px;
+}
+
+#add-book-form button:hover {
+  background: var(--yellow-color);
 }
 
 .form-subheaders {
@@ -55,7 +92,7 @@ body {
 }
 
 .form-all {
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: var(--lightblue-color);
   color: white;
   margin: 5px;
@@ -90,7 +127,7 @@ body {
   border: none;
   font: inherit;
   padding: 6px;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   color: white;
   margin: 5px;

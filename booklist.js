@@ -1,6 +1,9 @@
 const myLibrary = []
 const bookList = document.querySelector('#bookList')
 
+
+
+
 // Object Constructor Function
 function Book(title, author, pages) {
     this.title = title
@@ -24,31 +27,35 @@ function addBookToMyLibrary(title, author, pages) {
 
 // Update DOM Library, with an input library type of array containing objects
 function updateDomLibrary(lib) {
-    const li = document.createElement('li')
-
-    // Loop through the array of book objects in library
+    // Loop through the array of book objects in param library
     for (let i = 0; i < lib.length; i++) {
+        const li = document.createElement('li')
         // Loop through book object, assign element type, text, attributes and append to DOM
         for (const [key, val] of Object.entries(lib[i])) {
-            if (key == "title" || key == "author" || key == "pages") {
-                const currentElement = document.createElement('span')
-                currentElement.textContent = `${val}`;
-                currentElement.setAttribute("class", key);
-                li.appendChild(currentElement)
-            }
-            if (key == "read" || key == "remove") {
-                const currentElement = document.createElement('button')
-                currentElement.textContent = `${val}`;
-                currentElement.setAttribute("class", key);
-                li.appendChild(currentElement)
-            }
+            let element = document.createElement('span')
+            if (key == "read" || key == "remove") { element = document.createElement('button') }
+            element.textContent = `${val}`;
+            element.setAttribute("class", `${key}`);
+            li.appendChild(element)
         }
+        bookList.appendChild(li)
     }
-    bookList.appendChild(li)
 }
 
 addBookToMyLibrary("Brave New World", "Aldous Huxley", "311")
 addBookToMyLibrary("Nineteen Eighty-Four", "George Orwell", "328")
 addBookToMyLibrary("A Tale of Two Cities", "Charles Dickens", "448")
 
+
 updateDomLibrary(myLibrary)
+
+
+
+const removeBtns = document.querySelectorAll(".remove")
+
+removeBtns.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+        const btnParentElement = e.target.parentElement;
+        btnParentElement.parentNode.removeChild(btnParentElement)
+    })
+})

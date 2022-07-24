@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Library, The Odin Project</title>
+    <title>My Library</title>
+    <link rel="icon" href="libtabicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,7 +21,12 @@
       <header>
         <div id="banner">
           <h1>My Library</h1>
-          <p>Books I have read or want to read</p>
+          <form id="add-book-form" action="">
+            <input type="text" placeholder="Add Book Title..." />
+            <input type="text" placeholder="Author" />
+            <input type="text" placeholder="Pages" />
+            <button>Add Book</button>
+          </form>
         </div>
       </header>
 
@@ -34,8 +40,16 @@
           <h3 class="form-all form-remove">Remove</h3>
         </div>
         <ul id="bookList">
-          <!-- list items li from booklist.js are appended here -->
-        </ul>
+          <!-- <li>
+            <span class="title">The Great Test Book</span>
+            <span class="author">Authorsen</spans>
+            <span class="pages">1000</span>
+            <button class="read">Unread</button>
+            <button class="remove">Remove</button>
+          </li> -->
+          <!-- Test book -->
+            <!-- list items <li> from booklist.js are appended here -->
+          </ul>
       </div>
     </div>
   </body>
