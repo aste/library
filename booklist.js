@@ -16,10 +16,6 @@ function Book(title, author, pages) {
     this.remove = "Remove"
 }
 
-const testArr = [1]
-testArr.splice(0, 1)
-console.log(testArr)
-
 // It is better to create a function in the prototype of an object. That way the function
 // is not recreated in all instances of the object, which matters if you have many instances
 Book.prototype.info = function () {
@@ -54,24 +50,33 @@ function appendToDomLibrary(lib) {
     }
 }
 
-const removeBtns = document.querySelectorAll(".remove")
+// const removeBtns = document.querySelectorAll(".remove")
+
 const addBtn = document.querySelector(".addBtn")
+const addForm = document.forms["add-book-form"]
+
 
 // Assign addBook & removeBook functionality to all buttons
-removeBtns.forEach(btn => btn.addEventListener('click', removeBook));
-addBtn.addEventListener('click', addBook)
+// removeBtns.forEach(btn => btn.addEventListener('click', removeBook));
 
-// Remove button functionality
-function removeBook(e) {
-    myLibrary.forEach(libBook => {
-        if (libBook.title === e.target.parentNode.firstChild.textContent) {
-            e.target.parentNode.remove()
-            let libBookIndex = myLibrary.findIndex(libBook => libBook.title)
-            myLibrary.splice(libBookIndex, 1)
-        }
-    })
-}
 
-function addBook(e) {
-    if ()
-}
+// Add Remove book button functionality to the ul #bookList tag, accessible through event bubbling
+bookList.addEventListener("click", function (e) {
+    if (e.target.className == 'remove') {
+        console.log(e.target)
+        bookList.removeChild(e.target.parentNode)
+    }
+})
+
+
+addForm.addEventListener("submit", function (e) {
+    e.preventDefault()
+
+})
+
+// function addBook(e) {
+//     e.preventDefault()
+//     console.log(e.target)
+//     console.log(e)
+//     console.log("hello")
+// }
