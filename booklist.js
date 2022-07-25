@@ -1,5 +1,7 @@
 const myLibrary = []
 const bookList = document.querySelector('#bookList')
+const addBtn = document.querySelector(".addBtn")
+const addForm = document.forms["addFormInput"]
 
 addBookToMyLibrary("Brave New World", "Aldous Huxley", "311")
 addBookToMyLibrary("Nineteen Eighty-Four", "George Orwell", "328")
@@ -12,8 +14,8 @@ function Book(title, author, pages) {
     this.title = title
     this.author = author
     this.pages = pages
-    this.read = "Unread"
-    this.remove = "Remove"
+    this.read = "unread"
+    this.remove = "remove"
 }
 
 // It is better to create a function in the prototype of an object. That way the function
@@ -50,33 +52,33 @@ function appendToDomLibrary(lib) {
     }
 }
 
-// const removeBtns = document.querySelectorAll(".remove")
-
-const addBtn = document.querySelector(".addBtn")
-const addForm = document.forms["add-book-form"]
-
-
-// Assign addBook & removeBook functionality to all buttons
-// removeBtns.forEach(btn => btn.addEventListener('click', removeBook));
-
-
 // Add Remove book button functionality to the ul #bookList tag, accessible through event bubbling
 bookList.addEventListener("click", function (e) {
     if (e.target.className == 'remove') {
-        console.log(e.target)
+        const titleOfBook = e.target.parentNode.firstChild.textContent
+        const indexOfBook = myLibrary.findIndex(bookObj => bookObj.title === titleOfBook)
         bookList.removeChild(e.target.parentNode)
+        myLibrary.splice(indexOfBook, 1)
     }
 })
 
-
 addForm.addEventListener("submit", function (e) {
     e.preventDefault()
-
+    const title = addForm.querySelector('input[class="inputTitle"]').value
+    const author = addForm.querySelector('input[class="inputAuthor"]').value
+    const pages = addForm.querySelector('input[class="inputPages"]').value
+    if (title && author && pages) {
+        if (!(myLibrary.some(book => book.title === title))) {
+            addBookToMyLibrary(`${title}`, `${author}`, `${pages}`)
+            newBookArr = myLibrary.slice(-1)
+            appendToDomLibrary(newBookArr)
+            // console.log(myLibrary[myLibrary.length - 1])
+        } else { alert("This title already exists in your library") }
+    } else { alert("Please fill in all the required fields") }
 })
 
-// function addBook(e) {
-//     e.preventDefault()
-//     console.log(e.target)
-//     console.log(e)
-//     console.log("hello")
-// }
+
+// <input class="inputTitle" type="text" placeholder="Add Book Title..." />
+// <input class="inputAuthor" type="text" placeholder="Author" />
+// <input class="inputPages" type="number" placeholder="Pages" />
+// <button class="addBtn">Add Book</button>

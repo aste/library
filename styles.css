@@ -50,7 +50,7 @@ body {
   margin: 15px;
 }
 
-#add-book-form {
+#addFormInput {
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 2fr;
   padding: 5px;
@@ -58,21 +58,20 @@ body {
   margin: 30px;
 }
 
-#add-book-form input,
-#add-book-form button {
+#addFormInput input,
+#addFormInput button {
   padding: 10px;
   font-size: 16px;
   font: inherit;
   border: none;
   color: var(--grey-color);
-  /* box-shadow: 3px 3px 8px rgba(118, 118, 118, 0.2); */
 }
 
-#add-book-form input:first-of-type {
+#addFormInput input:first-of-type {
   border-radius: 6px 0 0 6px;
 }
 
-#add-book-form button {
+#addFormInput button {
   color: white;
   background: var(--green-color);
   border-radius: 0 6px 6px 0;
@@ -81,7 +80,7 @@ body {
   margin: 0px;
 }
 
-#add-book-form button:hover {
+#addFormInput button:hover {
   background: var(--yellow-color);
 }
 
