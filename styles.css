@@ -139,10 +139,6 @@ body {
   background: var(--red-color);
 }
 
-.read:hover {
-  background: var(--green-color);
-}
-
 .remove {
   background: var(--grey-color);
 }

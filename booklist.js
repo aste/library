@@ -3,11 +3,10 @@ const bookList = document.querySelector('#bookList')
 const addBtn = document.querySelector(".addBtn")
 const addForm = document.forms["addFormInput"]
 
+addBookToMyLibrary("A Tale of Two Cities", "Charles Dickens", "448")
 addBookToMyLibrary("Brave New World", "Aldous Huxley", "311")
 addBookToMyLibrary("Nineteen Eighty-Four", "George Orwell", "328")
-addBookToMyLibrary("A Tale of Two Cities", "Charles Dickens", "448")
 appendToDomLibrary(myLibrary)
-
 
 // Object Constructor Function
 function Book(title, author, pages) {
@@ -62,6 +61,22 @@ bookList.addEventListener("click", function (e) {
     }
 })
 
+// Add read/unread button to the ul #bookList tag, accessible through event bubbling from target btn
+bookList.addEventListener("click", function (e) {
+    if (e.target.className == 'read') {
+        // const readStatus = e.target.parentNode.children[3].textContent
+        if (e.target.parentNode.children[3].textContent == "unread") {
+            e.target.parentNode.children[3].textContent = "read"
+            e.target.parentNode.children[3].style.backgroundColor = "#bef264"
+        } else {
+            e.target.parentNode.children[3].textContent = "unread"
+            e.target.parentNode.children[3].style.backgroundColor = "#fca5a5"
+        }
+    }
+})
+
+
+// Form submit implementation, append input to myLibrary and DOM Library
 addForm.addEventListener("submit", function (e) {
     e.preventDefault()
     const title = addForm.querySelector('input[class="inputTitle"]').value
@@ -72,13 +87,6 @@ addForm.addEventListener("submit", function (e) {
             addBookToMyLibrary(`${title}`, `${author}`, `${pages}`)
             newBookArr = myLibrary.slice(-1)
             appendToDomLibrary(newBookArr)
-            // console.log(myLibrary[myLibrary.length - 1])
         } else { alert("This title already exists in your library") }
     } else { alert("Please fill in all the required fields") }
 })
-
-
-// <input class="inputTitle" type="text" placeholder="Add Book Title..." />
-// <input class="inputAuthor" type="text" placeholder="Author" />
-// <input class="inputPages" type="number" placeholder="Pages" />
-// <button class="addBtn">Add Book</button>
