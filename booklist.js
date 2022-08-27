@@ -3,25 +3,19 @@ const bookList = document.querySelector('#bookList')
 const addBtn = document.querySelector(".addBtn")
 const addForm = document.forms["addFormInput"]
 
-addBookToMyLibrary("A Tale of Two Cities", "Charles Dickens", "448")
-addBookToMyLibrary("Brave New World", "Aldous Huxley", "311")
-addBookToMyLibrary("Nineteen Eighty-Four", "George Orwell", "328")
-appendToDomLibrary(myLibrary)
 
 // Object Constructor Function
-function Book(title, author, pages) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = "unread"
-    this.remove = "remove"
+class Book {
+    constructor(title, author, pages) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = "unread"
+        this.remove = "remove"
+    }
+    info() { return [this.title, this.author, this.pages, this.read] }
 }
 
-// It is better to create a function in the prototype of an object. That way the function
-// is not recreated in all instances of the object, which matters if you have many instances
-Book.prototype.info = function () {
-    return [this.title, this.author, this.pages, this.read]
-}
 
 // Create new book object instance from the object constructor function and push it to myLibrary
 function addBookToMyLibrary(title, author, pages) {
@@ -90,3 +84,9 @@ addForm.addEventListener("submit", function (e) {
         } else { alert("This title already exists in your library") }
     } else { alert("Please fill in all the required fields") }
 })
+
+
+addBookToMyLibrary("A Tale of Two Cities", "Charles Dickens", "448")
+addBookToMyLibrary("Brave New World", "Aldous Huxley", "311")
+addBookToMyLibrary("Nineteen Eighty-Four", "George Orwell", "328")
+appendToDomLibrary(myLibrary)
