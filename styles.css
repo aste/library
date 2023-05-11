@@ -146,3 +146,7 @@ body {
 .remove:hover {
   background: var(--red-color);
 }
+
+.invalid {
+  color: red;
+  outline: red solid 1px;
