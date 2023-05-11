@@ -1,8 +1,11 @@
 const myLibrary = []
 const bookList = document.querySelector('#bookList')
-const addBtn = document.querySelector(".addBtn")
 const addForm = document.forms["addFormInput"]
 
+
+const titleRegEx = /^\.{1,}$/
+const authorRegEx = /^[0-9]{8}$/
+const pagesRegEx = /^\w+\s+\w+$/
 
 // Object Constructor Function
 class Book {
