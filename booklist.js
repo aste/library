@@ -1,8 +1,11 @@
 const myLibrary = []
 const bookList = document.querySelector('#bookList')
-const addBtn = document.querySelector(".addBtn")
-const addForm = document.forms["addFormInput"]
+const addForm = document.getElementById("addFormInput")
 
+
+const titleRegEx = /^.{2,}$/
+const authorRegEx = /^\w+\s+\w+/
+const pagesRegEx = /^[0-9]+$/
 
 // Object Constructor Function
 class Book {
@@ -73,18 +76,41 @@ bookList.addEventListener("click", function (e) {
 // Form submit implementation, append input to myLibrary and DOM Library
 addForm.addEventListener("submit", function (e) {
     e.preventDefault()
-    const title = addForm.querySelector('input[class="inputTitle"]').value
-    const author = addForm.querySelector('input[class="inputAuthor"]').value
-    const pages = addForm.querySelector('input[class="inputPages"]').value
-    if (title && author && pages) {
-        if (!(myLibrary.some(book => book.title === title))) {
-            addBookToMyLibrary(`${title}`, `${author}`, `${pages}`)
+
+    let titleVal = addForm.querySelector("#inputTitle").value
+    let authorVal = addForm.querySelector("#inputAuthor").value
+    let pagesVal = addForm.querySelector("#inputPages").value
+
+    const title = addForm.querySelector("#inputTitle")
+    const author = addForm.querySelector("#inputAuthor")
+    const pages = addForm.querySelector("#inputPages")
+
+    title.classList.remove("invalid");
+    author.classList.remove("invalid");
+    pages.classList.remove("invalid");
+
+    if (titleRegEx.test(titleVal) && authorRegEx.test(authorVal) && pagesRegEx.test(pagesVal)) {
+        if (!(myLibrary.some(book => book.title === titleVal))) {
+            addBookToMyLibrary(`${titleVal}`, `${authorVal}`, `${pagesVal}`)
             newBookArr = myLibrary.slice(-1)
             appendToDomLibrary(newBookArr)
-        } else { alert("This title already exists in your library") }
-    } else { alert("Please fill in all the required fields") }
+            title.value = '';
+            author.value = '';
+            pages.value = '';
+        } else if ((myLibrary.some(book => book.title === titleVal))) {
+            alert("This title already exists in your library")
+        }
+    } else {
+        if (!titleRegEx.test(titleVal)) {
+            title.classList.add("invalid")
+        } if (!authorRegEx.test(authorVal)) {
+            author.classList.add("invalid")
+        } if (!pagesRegEx.test(pagesVal)) {
+            pages.classList.add("invalid")
+        }
+        alert("Please fill the required fields \n The title must be at least two characters \n The author must consist of at least two words \n Pages should be any positive numerical value ")
+    }
 })
-
 
 addBookToMyLibrary("A Tale of Two Cities", "Charles Dickens", "448")
 addBookToMyLibrary("Brave New World", "Aldous Huxley", "311")
